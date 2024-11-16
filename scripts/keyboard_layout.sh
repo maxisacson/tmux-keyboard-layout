@@ -21,13 +21,18 @@ try_gsettings() {
         return
     fi
 
+    if [[ $layout == "@a(ss) []" ]]; then
+        return
+    fi
+
     echo "$layout"
 
     exit
 }
 
 try_default() {
-    echo "??"
+    local value=$(tmux show-option -gqv "@kbd_layout_default_string")
+    echo $value
 }
 
 try_gsettings
